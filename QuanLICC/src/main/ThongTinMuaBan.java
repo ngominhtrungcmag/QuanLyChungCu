@@ -5,8 +5,12 @@
  */
 package main;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import main.ConnectDB.KetNoi;
 
@@ -21,6 +25,7 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
      */
     public ThongTinMuaBan() {
         initComponents();
+        this.getDulieu();
         this.setLocationRelativeTo(null);
     }
     KetNoi ketNoi = new KetNoi();
@@ -50,13 +55,13 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         giaoDich_jTextField_maHopDong = new javax.swing.JTextField();
         giaoDich_jTextField_maKhachHang = new javax.swing.JTextField();
-        giaoDich_jComboBox_maCanHo = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         giaoDich_jTextField_gia = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         giaoDich_jButton_xoa = new javax.swing.JButton();
+        giaoDich_jTextField_maCanHo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,10 +107,19 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã hợp đồng", "Mã khách hàng", "Tên khách hàng", "Địa chỉ khách hàng", "Mã căn hộ", "Giá", "Ngày giao dịch"
+                "Mã hợp đồng", "Mã khách hàng", "Tên khách hàng", "Địa chỉ khách hàng", "Giá", "Ngày giao dịch", "Mã căn hộ"
             }
         ));
+        table_ThongTinMuaBan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_ThongTinMuaBanMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(table_ThongTinMuaBan);
+        if (table_ThongTinMuaBan.getColumnModel().getColumnCount() > 0) {
+            table_ThongTinMuaBan.getColumnModel().getColumn(4).setResizable(false);
+            table_ThongTinMuaBan.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         jPanel5.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 926, 170));
 
@@ -139,31 +153,23 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
             }
         });
         jPanel2.add(giaoDich_jButton_timKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, -1, -1));
-        jPanel2.add(giaoDich_jTextField_ngayGiaoDich, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 110, -1));
-        jPanel2.add(giaoDich_jTextField_diaChiKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 160, -1));
-        jPanel2.add(giaoDich_jTextField_tenKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 110, -1));
+        jPanel2.add(giaoDich_jTextField_ngayGiaoDich, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 110, -1));
+        jPanel2.add(giaoDich_jTextField_diaChiKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 170, -1));
+        jPanel2.add(giaoDich_jTextField_tenKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 110, -1));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel23.setText("Tên khách hàng");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, -1));
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel24.setText("Địa chỉ khách hàng");
-        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel25.setText("Ngày giao dịch");
-        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, -1, -1));
         jPanel2.add(giaoDich_jTextField_maHopDong, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 110, -1));
-        jPanel2.add(giaoDich_jTextField_maKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 110, -1));
-
-        giaoDich_jComboBox_maCanHo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A100", "B101", "C203" }));
-        giaoDich_jComboBox_maCanHo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                giaoDich_jComboBox_maCanHoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(giaoDich_jComboBox_maCanHo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 110, -1));
+        jPanel2.add(giaoDich_jTextField_maKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 110, -1));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel20.setText("Mã hợp đồng");
@@ -171,22 +177,22 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel21.setText("Mã Khách hàng");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel22.setText("Mã căn hộ");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, -1));
 
         giaoDich_jTextField_gia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 giaoDich_jTextField_giaActionPerformed(evt);
             }
         });
-        jPanel2.add(giaoDich_jTextField_gia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 110, -1));
+        jPanel2.add(giaoDich_jTextField_gia, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 110, -1));
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel26.setText("Giá");
-        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, -1, -1));
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, -1, -1));
 
         giaoDich_jButton_xoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         giaoDich_jButton_xoa.setText("Xoá");
@@ -201,6 +207,7 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
             }
         });
         jPanel2.add(giaoDich_jButton_xoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, -1, -1));
+        jPanel2.add(giaoDich_jTextField_maCanHo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 110, -1));
 
         jPanel5.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 910, 210));
 
@@ -227,7 +234,8 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
     private void giaoDich_jButton_timKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giaoDich_jButton_timKiemActionPerformed
         // TODO add your handling code here:
         
-        giaoDich_jTextField_maHopDong.setText("");       
+        giaoDich_jTextField_maHopDong.setText("");    
+        giaoDich_jTextField_maCanHo.setText("");
         giaoDich_jTextField_gia.setText("");
         giaoDich_jTextField_ngayGiaoDich.setText("");
         giaoDich_jTextField_maKhachHang.setText("");
@@ -240,10 +248,6 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_giaoDich_jButton_xoaActionPerformed
 
-    private void giaoDich_jComboBox_maCanHoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giaoDich_jComboBox_maCanHoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_giaoDich_jComboBox_maCanHoActionPerformed
-
     private void giaoDich_jTextField_giaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giaoDich_jTextField_giaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_giaoDich_jTextField_giaActionPerformed
@@ -251,79 +255,86 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
     private void giaoDich_jButton_themMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giaoDich_jButton_themMouseClicked
         // TODO add your handling code here:
         String maHopDong = giaoDich_jTextField_maHopDong.getText();
-        String maCanHo = (String) giaoDich_jComboBox_maCanHo.getSelectedItem();
-        String gia = giaoDich_jTextField_gia.getText();
+        String maCanHo = giaoDich_jTextField_maCanHo.getText();
+        String giaBan = giaoDich_jTextField_gia.getText();
         String ngayGiaoDich = giaoDich_jTextField_ngayGiaoDich.getText();
         String maKhachHang = giaoDich_jTextField_maKhachHang.getText();
         String tenKhachHang = giaoDich_jTextField_tenKhachHang.getText();
-        String diaChi = giaoDich_jTextField_diaChiKhachHang.getText();
+        String diaChiKH = giaoDich_jTextField_diaChiKhachHang.getText();
         
-        String query = "INSERT INTO GIAODICH VALUES("+maHopDong+",'"+maKhachHang+"',"+tenKhachHang+",'"
-                +diaChi+"','"+maCanHo+"',"+gia+"','"+ngayGiaoDich+")";
+        String query = "INSERT INTO HOPDONG VALUES('"+maHopDong+"','"+maKhachHang+"','"+tenKhachHang+",'"
+                +diaChiKH+"','"+maCanHo+"',"+giaBan+",'"+ngayGiaoDich+"')";
+        ketNoi.Mo();
         ketNoi.CapNhat(query);
+        System.out.println(query);
         
+        this.getDulieu();
         //show
-        String query1 = "SELECT * FROM GIAODICH ";
-        ResultSet rs = ketNoi.LayDL(query1);
-        DefaultTableModel tbl = new DefaultTableModel();
-        try{
-            while(rs.next()){
-                Object rowData[] = new Object[7];
-                rowData[0] = rs.getString(1);
-                rowData[1] = rs.getString(2);
-                rowData[2] = rs.getString(3);
-                rowData[3] = rs.getString(4);
-                rowData[4] = rs.getString(5);
-                rowData[5] = rs.getString(6);
-                rowData[6] = rs.getString(7);
-                tbl.addRow(rowData);
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
+//        String query1 = "SELECT * FROM GIAODICH ";
+//        ResultSet rs = ketNoi.LayDL(query1);
+//        DefaultTableModel tbl = new DefaultTableModel();
+//        try{
+//            while(rs.next()){
+//                Object rowData[] = new Object[7];
+//                rowData[0] = rs.getString(1);
+//                rowData[1] = rs.getString(2);
+//                rowData[2] = rs.getString(3);
+//                rowData[3] = rs.getString(4);
+//                rowData[4] = rs.getString(5);
+//                rowData[5] = rs.getString(6);
+//                rowData[6] = rs.getString(7);
+//                tbl.addRow(rowData);
+//            }
+//        }catch(SQLException ex){
+//            ex.printStackTrace();
+//        }
     }//GEN-LAST:event_giaoDich_jButton_themMouseClicked
 
     private void giaoDich_jButton_suaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giaoDich_jButton_suaMouseClicked
         // TODO add your handling code here:
         String maHopDong = giaoDich_jTextField_maHopDong.getText();
-        String maCanHo = (String) giaoDich_jComboBox_maCanHo.getSelectedItem();
+        String maCanHo = giaoDich_jTextField_maCanHo.getText();
         String gia = giaoDich_jTextField_gia.getText();
         String ngayGiaoDich = giaoDich_jTextField_ngayGiaoDich.getText();
         String maKhachHang = giaoDich_jTextField_maKhachHang.getText();
         String tenKhachHang = giaoDich_jTextField_tenKhachHang.getText();
-        String diaChi = giaoDich_jTextField_diaChiKhachHang.getText();
+        String diaChiKH = giaoDich_jTextField_diaChiKhachHang.getText();
         
         int hangDuocChon = table_ThongTinMuaBan.getSelectedRow();
         String maTemp = table_ThongTinMuaBan.getValueAt(hangDuocChon, 0).toString();
-        String query = "UPDATE GIAODICH SET maKhachHang="+maKhachHang+","
-                + "tenKhachhang='"+tenKhachHang+"', diaChi='"+diaChi+"',maCanHo="+maCanHo+", gia="+gia+", ngayGiaoDich='"+ngayGiaoDich+"' where maHopDong="+maTemp;
+        String query = "UPDATE HOPDONG SET maKhachHang='"+maKhachHang+"',tenKhachhang='"+tenKhachHang+"', "
+        + "diaChiKH='"+diaChiKH+"', giaBan='"+gia+"', ngayGiaoDich='"+ngayGiaoDich+"', maCanHo='"+maCanHo+"'"
+                + " where maHopDong='"+maTemp+"'";
+        ketNoi.Mo();
         ketNoi.CapNhat(query);
+        System.out.println(query);
         
+        this.getDulieu();
         //show
-        String query1 = "SELECT * FROM GIAODICH ";
-        ResultSet rs = ketNoi.LayDL(query1);
-        DefaultTableModel tbl = new DefaultTableModel();
-        try{
-            while(rs.next()){
-                Object rowData[] = new Object[7];
-                rowData[0] = rs.getString(1);
-                rowData[1] = rs.getString(2);
-                rowData[2] = rs.getString(3);
-                rowData[3] = rs.getString(4);
-                rowData[4] = rs.getString(5);
-                rowData[5] = rs.getString(6);
-                rowData[6] = rs.getString(7);
-                tbl.addRow(rowData);
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
+//        String query1 = "SELECT * FROM GIAODICH ";
+//        ResultSet rs = ketNoi.LayDL(query1);
+//        DefaultTableModel tbl = new DefaultTableModel();
+//        try{
+//            while(rs.next()){
+//                Object rowData[] = new Object[7];
+//                rowData[0] = rs.getString(1);
+//                rowData[1] = rs.getString(2);
+//                rowData[2] = rs.getString(3);
+//                rowData[3] = rs.getString(4);
+//                rowData[4] = rs.getString(5);
+//                rowData[5] = rs.getString(6);
+//                rowData[6] = rs.getString(7);
+//                tbl.addRow(rowData);
+//            }
+//        }catch(SQLException ex){
+//            ex.printStackTrace();
+//        }
     }//GEN-LAST:event_giaoDich_jButton_suaMouseClicked
 
     private void giaoDich_jButton_xoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giaoDich_jButton_xoaMouseClicked
         // TODO add your handling code here:
         String maHopDong = giaoDich_jTextField_maHopDong.getText();
-        String maCanHo = (String) giaoDich_jComboBox_maCanHo.getSelectedItem();
+        String maCanHo = giaoDich_jTextField_maCanHo.getText();
         String gia = giaoDich_jTextField_gia.getText();
         String ngayGiaoDich = giaoDich_jTextField_ngayGiaoDich.getText();
         String maKhachHang = giaoDich_jTextField_maKhachHang.getText();
@@ -331,32 +342,48 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
         String diaChi = giaoDich_jTextField_diaChiKhachHang.getText();
         
         int hangDuocChon = table_ThongTinMuaBan.getSelectedRow();
-        String maTemp = table_ThongTinMuaBan.getValueAt(hangDuocChon, 0).toString();
+        String maHDTemp = table_ThongTinMuaBan.getValueAt(hangDuocChon, 0).toString();
         
-        String query = "DELETE from GIADICH where maHopDong="+maTemp;
+        String query = "DELETE from HOPDONG where maHopDong="+maHDTemp;
+        ketNoi.Mo();
         ketNoi.CapNhat(query);
+        System.out.println(query);
         
-        
+        this.getDulieu();
         //show
-        String query1 = "SELECT * FROM GIAODICH ";
-        ResultSet rs = ketNoi.LayDL(query1);
-        DefaultTableModel tbl = new DefaultTableModel();
-        try{
-            while(rs.next()){
-                Object rowData[] = new Object[7];
-                rowData[0] = rs.getString(1);
-                rowData[1] = rs.getString(2);
-                rowData[2] = rs.getString(3);
-                rowData[3] = rs.getString(4);
-                rowData[4] = rs.getString(5);
-                rowData[5] = rs.getString(6);
-                rowData[6] = rs.getString(7);
-                tbl.addRow(rowData);
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
+//        String query1 = "SELECT * FROM GIAODICH ";
+//        ResultSet rs = ketNoi.LayDL(query1);
+//        DefaultTableModel tbl = new DefaultTableModel();
+//        try{
+//            while(rs.next()){
+//                Object rowData[] = new Object[7];
+//                rowData[0] = rs.getString(1);
+//                rowData[1] = rs.getString(2);
+//                rowData[2] = rs.getString(3);
+//                rowData[3] = rs.getString(4);
+//                rowData[4] = rs.getString(5);
+//                rowData[5] = rs.getString(6);
+//                rowData[6] = rs.getString(7);
+//                tbl.addRow(rowData);
+//            }
+//        }catch(SQLException ex){
+//            ex.printStackTrace();
+//        }
     }//GEN-LAST:event_giaoDich_jButton_xoaMouseClicked
+
+    private void table_ThongTinMuaBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_ThongTinMuaBanMouseClicked
+        // TODO add your handling code here:
+        
+        int rowSelected = table_ThongTinMuaBan.getSelectedRow();
+        giaoDich_jTextField_maHopDong.setText(table_ThongTinMuaBan.getValueAt(rowSelected, 0).toString());
+        giaoDich_jTextField_maKhachHang.setText(table_ThongTinMuaBan.getValueAt(rowSelected, 1).toString());
+        giaoDich_jTextField_tenKhachHang.setText(table_ThongTinMuaBan.getValueAt(rowSelected, 2).toString());
+        giaoDich_jTextField_diaChiKhachHang.setText(table_ThongTinMuaBan.getValueAt(rowSelected, 3).toString());
+        giaoDich_jTextField_maCanHo.setText(table_ThongTinMuaBan.getValueAt(rowSelected, 6).toString());
+        giaoDich_jTextField_gia.setText(table_ThongTinMuaBan.getValueAt(rowSelected, 4).toString());
+        giaoDich_jTextField_ngayGiaoDich.setText(table_ThongTinMuaBan.getValueAt(rowSelected, 5).toString());
+        
+    }//GEN-LAST:event_table_ThongTinMuaBanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -392,15 +419,54 @@ public class ThongTinMuaBan extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void getDulieu()
+    {
+        KetNoi ketNoi = new KetNoi();
+        ketNoi.Mo();
+        String query = "SELECT * FROM HOPDONG;";
+        System.out.println(query);
+        ResultSet rs = ketNoi.LayDL(query);
+// create a table model and set a Column Identifiers to this model 
+        Object[] columns = {"Mã hợp đồng","Mã khách hàng","Tên khách hàng","Địa chỉ khách hàng","Giá", "Ngày Giao dịch", "Mã Khu"};
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(columns);
+        table_ThongTinMuaBan.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));        
+        table_ThongTinMuaBan.getTableHeader().setOpaque(false);
+        table_ThongTinMuaBan.getTableHeader().setBackground(new Color(32, 136, 203));
+        table_ThongTinMuaBan.getTableHeader().setForeground(new Color(255,255,255));
+        table_ThongTinMuaBan.setRowHeight(25);
+// create an array of objects to set the row data
+        Object[] row = new Object[9];
+        try {
+            while(rs.next())
+            {
+                Object rowData[] = new Object[9]; 
+                rowData[0]=rs.getString(1);
+                rowData[1]=rs.getString(2);
+                rowData[2]=rs.getString(3);
+                rowData[3]=rs.getString(4);
+                rowData[4]=rs.getString(5);
+                rowData[5]=rs.getString(6);
+                rowData[6]=rs.getString(7);
+                model.addRow(rowData);
+                table_ThongTinMuaBan.setModel(model);
+             //   System.out.println("add du lieu vao bang thanh cong!");        
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ThongTinDanCu.class.getName()).log(Level.SEVERE, null, ex);
+          //  System.out.println("add du lieu vao bang that bai!");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton giaoDich_jButton_sua;
     private javax.swing.JButton giaoDich_jButton_them;
     private javax.swing.JButton giaoDich_jButton_timKiem;
     private javax.swing.JButton giaoDich_jButton_xoa;
-    private javax.swing.JComboBox<String> giaoDich_jComboBox_maCanHo;
     private javax.swing.JTextField giaoDich_jTextField_diaChiKhachHang;
     private javax.swing.JTextField giaoDich_jTextField_gia;
+    private javax.swing.JTextField giaoDich_jTextField_maCanHo;
     private javax.swing.JTextField giaoDich_jTextField_maHopDong;
     private javax.swing.JTextField giaoDich_jTextField_maKhachHang;
     private javax.swing.JTextField giaoDich_jTextField_ngayGiaoDich;

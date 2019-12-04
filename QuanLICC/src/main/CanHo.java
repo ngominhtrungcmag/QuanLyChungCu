@@ -5,6 +5,8 @@
  */
 package main;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -23,6 +25,7 @@ public class CanHo extends javax.swing.JFrame {
      */
     public CanHo() {
         initComponents();
+        this.getDulieu();
     }
     KetNoi ketNoi = new KetNoi();
     /**
@@ -53,7 +56,6 @@ public class CanHo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        canHo_jComboBox_maCan = new javax.swing.JComboBox<>();
         canHo_jTextField_gia = new javax.swing.JTextField();
         canHo_jTextField_soPhong = new javax.swing.JTextField();
         canHo_jTextField_dienTich = new javax.swing.JTextField();
@@ -65,6 +67,7 @@ public class CanHo extends javax.swing.JFrame {
         canHo_jButton_reset = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         canHo_jCheckBox_trangThai = new javax.swing.JCheckBox();
+        canHo_jTextField_maCan = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -101,21 +104,21 @@ public class CanHo extends javax.swing.JFrame {
 
         table_CanHo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã căn", "Diện tích (m2)", "Giá (triệu)", "Trạng thái", "Số phòng", "Mã khách hàng", "Khu"
+                "Mã căn", "Diện tích (m2)", "Giá (triệu)", "Trạng thái", "Số phòng", "Mã khách hàng", "Khu"
             }
         ));
         table_CanHo.setMaximumSize(new java.awt.Dimension(775, 150));
@@ -177,42 +180,40 @@ public class CanHo extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Mã căn");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
 
         jLabel3.setText("Diện tích");
         jLabel3.setToolTipText("");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
 
         jLabel4.setText("Giá");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
 
         jLabel6.setText("Số phòng");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
 
         jLabel7.setText("Mã khách hàng");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
 
         jLabel8.setText("Khu");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
-
-        canHo_jComboBox_maCan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A100", "B201", "C303" }));
-        canHo_jComboBox_maCan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                canHo_jComboBox_maCanActionPerformed(evt);
-            }
-        });
-        jPanel3.add(canHo_jComboBox_maCan, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
-        jPanel3.add(canHo_jTextField_gia, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 90, -1));
-        jPanel3.add(canHo_jTextField_soPhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 90, -1));
-        jPanel3.add(canHo_jTextField_dienTich, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 90, -1));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
+        jPanel3.add(canHo_jTextField_gia, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 90, -1));
+        jPanel3.add(canHo_jTextField_soPhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 90, -1));
+        jPanel3.add(canHo_jTextField_dienTich, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 90, -1));
 
         canHo_jTextField_maKhachHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 canHo_jTextField_maKhachHangActionPerformed(evt);
             }
         });
-        jPanel3.add(canHo_jTextField_maKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 90, -1));
-        jPanel3.add(canHo_jTextField_khu, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 90, -1));
+        jPanel3.add(canHo_jTextField_maKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 90, -1));
+
+        canHo_jTextField_khu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                canHo_jTextField_khuActionPerformed(evt);
+            }
+        });
+        jPanel3.add(canHo_jTextField_khu, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 90, -1));
 
         canHo_jButton_them.setText("Thêm");
         canHo_jButton_them.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -247,23 +248,25 @@ public class CanHo extends javax.swing.JFrame {
         jPanel3.add(canHo_jButton_reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, -1, -1));
 
         jLabel5.setText("Trạng thái");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
 
         canHo_jCheckBox_trangThai.setText("Đã bán");
-        jPanel3.add(canHo_jCheckBox_trangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, -1, -1));
+        canHo_jCheckBox_trangThai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                canHo_jCheckBox_trangThaiActionPerformed(evt);
+            }
+        });
+        jPanel3.add(canHo_jCheckBox_trangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, -1, -1));
+        jPanel3.add(canHo_jTextField_maCan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 90, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 940, 250));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void canHo_jComboBox_maCanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canHo_jComboBox_maCanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_canHo_jComboBox_maCanActionPerformed
-
     private void canHo_jButton_resetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canHo_jButton_resetMouseClicked
         // TODO add your handling code here:
-        canHo_jComboBox_maCan.setSelectedItem("A100");
+        canHo_jTextField_maCan.setText("");
         canHo_jTextField_dienTich.setText("");
         canHo_jTextField_gia.setText("");
         canHo_jTextField_soPhong.setText("");
@@ -276,8 +279,9 @@ public class CanHo extends javax.swing.JFrame {
     private void table_CanHoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_CanHoMouseClicked
         // TODO add your handling code here:
         int rowSelected = table_CanHo.getSelectedRow();
-        canHo_jTextField_dienTich.setText(table_CanHo.getValueAt(rowSelected, 2).toString());
-        canHo_jTextField_gia.setText(table_CanHo.getValueAt(rowSelected, 3).toString());
+        canHo_jTextField_maCan.setText(table_CanHo.getValueAt(rowSelected, 0).toString());
+        canHo_jTextField_dienTich.setText(table_CanHo.getValueAt(rowSelected, 1).toString());
+        canHo_jTextField_gia.setText(table_CanHo.getValueAt(rowSelected, 2).toString());
         canHo_jTextField_soPhong.setText(table_CanHo.getValueAt(rowSelected, 4).toString());
         canHo_jTextField_maKhachHang.setText(table_CanHo.getValueAt(rowSelected, 5).toString());
         canHo_jTextField_khu.setText(table_CanHo.getValueAt(rowSelected, 6).toString());
@@ -285,7 +289,7 @@ public class CanHo extends javax.swing.JFrame {
 
     private void canHo_jButton_themMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canHo_jButton_themMouseClicked
         // TODO add your handling code here:
-        String maCan = (String) canHo_jComboBox_maCan.getSelectedItem();
+        String maCan = canHo_jTextField_maCan.getText();
         String gia = canHo_jTextField_gia.getText();
         String soPhong = canHo_jTextField_soPhong.getText();
         String dienTich = canHo_jTextField_dienTich.getText();
@@ -293,103 +297,112 @@ public class CanHo extends javax.swing.JFrame {
         String khu = canHo_jTextField_khu.getText();
         String trangThai;
         if(canHo_jCheckBox_trangThai.isSelected())
-            trangThai = "Da ban";
-                    else trangThai = "Chua ban";
-        String query = "INSERT INTO CANHO VALUES("+maCan+",'"+dienTich+"',"+gia+",'"
-                +trangThai+"','"+soPhong+"',"+maKhachHang+"','"+khu+")";
+            trangThai = "1";
+                    else trangThai = "0";
+        String query = "INSERT INTO CANHO VALUES('"+maCan+"',"+dienTich+","+gia+",'"
+                +trangThai+"',"+soPhong+",'"+maKhachHang+"','"+khu+"')";
+        ketNoi.Mo();
         ketNoi.CapNhat(query);
+        System.out.println(query);
+        this.getDulieu();
         
         //show
-        String query1 = "SELECT * FROM CANHO ";
-        ResultSet rs = ketNoi.LayDL(query1);
-        DefaultTableModel tbl = new DefaultTableModel();
-        try{
-            while(rs.next()){
-                Object rowData[] = new Object[7];
-                rowData[0] = rs.getString(1);
-                rowData[1] = rs.getString(2);
-                rowData[2] = rs.getString(3);
-                rowData[3] = rs.getString(4);
-                rowData[4] = rs.getString(5);
-                rowData[5] = rs.getString(6);
-                rowData[6] = rs.getString(7);
-                tbl.addRow(rowData);
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
+//        String query1 = "SELECT * FROM CANHO ";
+//        ResultSet rs = ketNoi.LayDL(query1);
+//        DefaultTableModel tbl = new DefaultTableModel();
+//        try{
+//            while(rs.next()){
+//                Object rowData[] = new Object[7];
+//                rowData[0] = rs.getString(1);
+//                rowData[1] = rs.getString(2);
+//                rowData[2] = rs.getString(3);
+//                rowData[3] = rs.getString(4);
+//                rowData[4] = rs.getString(5);
+//                rowData[5] = rs.getString(6);
+//                rowData[6] = rs.getString(7);
+//                tbl.addRow(rowData);
+//            }
+//        }catch(SQLException ex){
+//            ex.printStackTrace();
+//        }
         
     }//GEN-LAST:event_canHo_jButton_themMouseClicked
 
     private void canHo_jButton_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canHo_jButton_suaActionPerformed
         // TODO add your handling code here:
-        String maCan = (String) canHo_jComboBox_maCan.getSelectedItem();
-        String gia = canHo_jTextField_gia.getText();
+        String maCanHo = canHo_jTextField_maCan.getText();
+        String giaBan = canHo_jTextField_gia.getText();
         String soPhong = canHo_jTextField_soPhong.getText();
         String dienTich = canHo_jTextField_dienTich.getText();
         String maKhachHang = canHo_jTextField_maKhachHang.getText();
         String khu = canHo_jTextField_khu.getText();
         int hangDuocChon = table_CanHo.getSelectedRow();
-        String maTemp = table_CanHo.getValueAt(hangDuocChon, 1).toString();
-        String query = "UPDATE INFO SET gia="+gia+", soPhong='"
-                +soPhong+"', dienTich='"+dienTich+"',maKhachHang="+maKhachHang+" where maCan="+maTemp;
+        String maCanTemp = table_CanHo.getValueAt(hangDuocChon, 0).toString();
+        String query = "UPDATE CANHO SET giaBan="+giaBan+", soPhong="
+                +soPhong+", dienTich="+dienTich+",maKhachHang='"+maKhachHang+"' where maCanHo='"+maCanHo+"'";
+        ketNoi.Mo();
         ketNoi.CapNhat(query);
+        System.out.println(query);
+        this.getDulieu();
 
         
         //show
-        String query1 = "SELECT * FROM CANHO ";
-        ResultSet rs = ketNoi.LayDL(query1);
-        DefaultTableModel tbl = new DefaultTableModel();
-        try{
-            while(rs.next()){
-                Object rowData[] = new Object[7];
-                rowData[0] = rs.getString(1);
-                rowData[1] = rs.getString(2);
-                rowData[2] = rs.getString(3);
-                rowData[3] = rs.getString(4);
-                rowData[4] = rs.getString(5);
-                rowData[5] = rs.getString(6);
-                rowData[6] = rs.getString(7);
-                tbl.addRow(rowData);
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
+//        String query1 = "SELECT * FROM CANHO ";
+//        ResultSet rs = ketNoi.LayDL(query1);
+//        DefaultTableModel tbl = new DefaultTableModel();
+//        try{
+//            while(rs.next()){
+//                Object rowData[] = new Object[7];
+//                rowData[0] = rs.getString(1);
+//                rowData[1] = rs.getString(2);
+//                rowData[2] = rs.getString(3);
+//                rowData[3] = rs.getString(4);
+//                rowData[4] = rs.getString(5);
+//                rowData[5] = rs.getString(6);
+//                rowData[6] = rs.getString(7);
+//                tbl.addRow(rowData);
+//            }
+//        }catch(SQLException ex){
+//            ex.printStackTrace();
+//        }
         
     }//GEN-LAST:event_canHo_jButton_suaActionPerformed
 
     private void canHo_jButton_xoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canHo_jButton_xoaMouseClicked
         // TODO add your handling code here:
-        String maCan = (String) canHo_jComboBox_maCan.getSelectedItem();
-        String gia = canHo_jTextField_gia.getText();
+        String maCanHo = canHo_jTextField_maCan.getText();
+        String giaBan = canHo_jTextField_gia.getText();
         String soPhong = canHo_jTextField_soPhong.getText();
         String dienTich = canHo_jTextField_dienTich.getText();
         String maKhachHang = canHo_jTextField_maKhachHang.getText();
         String khu = canHo_jTextField_khu.getText();
         int rowNow = table_CanHo.getSelectedRow();
-        String maTemp = table_CanHo.getValueAt(rowNow, 1).toString();
-        String query = "DELETE from CANHO where maCan="+maTemp;
+        String maCanTemp = table_CanHo.getValueAt(rowNow, 0).toString();
+        String query = "DELETE from CANHO where maCanHo='"+maCanHo+"'";
+        ketNoi.Mo();
         ketNoi.CapNhat(query);
+        System.out.println(query);
         
+        this.getDulieu();
         //show
-        String query1 = "SELECT * FROM CANHO ";
-        ResultSet rs = ketNoi.LayDL(query1);
-        DefaultTableModel tbl = new DefaultTableModel();
-        try{
-            while(rs.next()){
-                Object rowData[] = new Object[7];
-                rowData[0] = rs.getString(1);
-                rowData[1] = rs.getString(2);
-                rowData[2] = rs.getString(3);
-                rowData[3] = rs.getString(4);
-                rowData[4] = rs.getString(5);
-                rowData[5] = rs.getString(6);
-                rowData[6] = rs.getString(7);
-                tbl.addRow(rowData);
-            }
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
+//        String query1 = "SELECT * FROM CANHO ";
+//        ResultSet rs = ketNoi.LayDL(query1);
+//        DefaultTableModel tbl = new DefaultTableModel();
+//        try{
+//            while(rs.next()){
+//                Object rowData[] = new Object[7];
+//                rowData[0] = rs.getString(1);
+//                rowData[1] = rs.getString(2);
+//                rowData[2] = rs.getString(3);
+//                rowData[3] = rs.getString(4);
+//                rowData[4] = rs.getString(5);
+//                rowData[5] = rs.getString(6);
+//                rowData[6] = rs.getString(7);
+//                tbl.addRow(rowData);
+//            }
+//        }catch(SQLException ex){
+//            ex.printStackTrace();
+//        }
     }//GEN-LAST:event_canHo_jButton_xoaMouseClicked
 
     private void canHo_jCheckBox_trangThaiTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canHo_jCheckBox_trangThaiTimKiemActionPerformed
@@ -410,6 +423,14 @@ public class CanHo extends javax.swing.JFrame {
         String query = "SELECT * FROM CANHO "
                          + "WHERE dienTich="+canHo_jComboBox_dienTichTimKiem+" and "+trangThaiTK+";";
     }//GEN-LAST:event_canHo_jButton_timKiemMouseClicked
+
+    private void canHo_jTextField_khuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canHo_jTextField_khuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_canHo_jTextField_khuActionPerformed
+
+    private void canHo_jCheckBox_trangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canHo_jCheckBox_trangThaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_canHo_jCheckBox_trangThaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,7 +481,44 @@ public class CanHo extends javax.swing.JFrame {
             }
         });
     }
-
+    public void getDulieu()
+    {
+        KetNoi ketNoi = new KetNoi();
+        ketNoi.Mo();
+        String query = "SELECT * FROM CANHO;";
+        System.out.println(query);
+        ResultSet rs = ketNoi.LayDL(query);
+// create a table model and set a Column Identifiers to this model 
+        Object[] columns = {"Mã căn","Diện tích","Giá","Trạng thái","Số phòng", "Mã khách hàng", "Khu"};
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(columns);
+        table_CanHo.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));        
+        table_CanHo.getTableHeader().setOpaque(false);
+        table_CanHo.getTableHeader().setBackground(new Color(32, 136, 203));
+        table_CanHo.getTableHeader().setForeground(new Color(255,255,255));
+        table_CanHo.setRowHeight(25);
+// create an array of objects to set the row data
+        Object[] row = new Object[4];
+        try {
+            while(rs.next())
+            {
+                Object rowData[] = new Object[9]; 
+                rowData[0]=rs.getString(1);
+                rowData[1]=rs.getString(2);
+                rowData[2]=rs.getString(3);
+                rowData[3]=rs.getString(4);
+                rowData[4]=rs.getString(5);
+                rowData[5]=rs.getString(6);
+                rowData[6]=rs.getString(7);
+                model.addRow(rowData);
+                table_CanHo.setModel(model);
+                System.out.println("add du lieu vao bang thanh cong!");        
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ThongTinDanCu.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("add du lieu vao bang that bai!");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton canHo_jButton_reset;
     private javax.swing.JButton canHo_jButton_sua;
@@ -471,10 +529,10 @@ public class CanHo extends javax.swing.JFrame {
     private javax.swing.JCheckBox canHo_jCheckBox_trangThaiTimKiem;
     private javax.swing.JComboBox canHo_jComboBox_dienTichTimKiem;
     private javax.swing.JComboBox canHo_jComboBox_giaTimKiem;
-    private javax.swing.JComboBox<String> canHo_jComboBox_maCan;
     private javax.swing.JTextField canHo_jTextField_dienTich;
     private javax.swing.JTextField canHo_jTextField_gia;
     private javax.swing.JTextField canHo_jTextField_khu;
+    private javax.swing.JTextField canHo_jTextField_maCan;
     private javax.swing.JTextField canHo_jTextField_maKhachHang;
     private javax.swing.JTextField canHo_jTextField_soPhong;
     private javax.swing.JLabel jLabel1;

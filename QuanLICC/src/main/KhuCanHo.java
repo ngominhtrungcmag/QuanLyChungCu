@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.ConnectDB.KetNoi;
 
@@ -25,7 +26,7 @@ public class KhuCanHo extends javax.swing.JFrame {
      */
     public KhuCanHo() {
         initComponents();
-        this.setLocationRelativeTo(null);
+    //    this.setLocationRelativeTo(null);
         this.getDulieu();
     }
     
@@ -59,9 +60,9 @@ public class KhuCanHo extends javax.swing.JFrame {
         khuCanHo_jButton_sua = new javax.swing.JButton();
         khuCanHo_jButton_xoa = new javax.swing.JButton();
         khuCanHo_jButton_tim = new javax.swing.JButton();
-        khuCanHo_jComboBox_maKhu = new javax.swing.JComboBox<>();
         khuCanHo_jButton_reset = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        khuCanHo_jTextField_maKhu = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_KhuCanHo = new javax.swing.JTable();
 
@@ -113,6 +114,11 @@ public class KhuCanHo extends javax.swing.JFrame {
 
         khuCanHo_jButton_them.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         khuCanHo_jButton_them.setText("THÊM");
+        khuCanHo_jButton_them.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                khuCanHo_jButton_themMouseClicked(evt);
+            }
+        });
         khuCanHo_jButton_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 khuCanHo_jButton_themActionPerformed(evt);
@@ -142,9 +148,6 @@ public class KhuCanHo extends javax.swing.JFrame {
         khuCanHo_jButton_tim.setText("Tìm");
         panel_ThongTin.add(khuCanHo_jButton_tim, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, -1, -1));
 
-        khuCanHo_jComboBox_maKhu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
-        panel_ThongTin.add(khuCanHo_jComboBox_maKhu, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 140, -1));
-
         khuCanHo_jButton_reset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         khuCanHo_jButton_reset.setText("Reset");
         khuCanHo_jButton_reset.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,19 +159,20 @@ public class KhuCanHo extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã khu", "Tên Khu" }));
         panel_ThongTin.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, -1, -1));
+        panel_ThongTin.add(khuCanHo_jTextField_maKhu, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 140, -1));
 
         table_KhuCanHo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã khu", "Tên khu", "Số tầng", "Số căn/tầng", "Địa chỉ"
+                "Mã khu", "Tên khu", "Số tầng", "Số căn/tầng", "Địa chỉ"
             }
         ));
         table_KhuCanHo.setFocusable(false);
@@ -245,14 +249,16 @@ public class KhuCanHo extends javax.swing.JFrame {
 
     private void khuCanHo_jButton_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_khuCanHo_jButton_themActionPerformed
         // TODO add your handling code here:
-        String maKhu = (String) khuCanHo_jComboBox_maKhu.getSelectedItem();
+        String maKhu = khuCanHo_jTextField_maKhu.getText();
         String tenKhu = khuCanHo_jTextField_tenKhu.getText();
         String diaChi = khuCanHo_jTextField_diaChi.getText();
         String soTang = khuCanHo_jTextField_soTang.getText();
         String soCan = khuCanHo_jTextField_soCan.getText();
-        String query = "INSERT INTO KHUCANHO VALUES("+maKhu+",'"+tenKhu+"',"+soTang+",'"
-                +soCan+"','"+diaChi+")";
+        String query = "INSERT INTO KHUCANHO VALUES('"+maKhu+"','"+tenKhu+"',"+soTang+",'"
+                +soCan+"','"+diaChi+"')";
+        ketNoi.Mo();
         ketNoi.CapNhat(query);
+        System.out.println("Them thanh cong");
         
         //show
         this.getDulieu();
@@ -261,6 +267,7 @@ public class KhuCanHo extends javax.swing.JFrame {
 
     private void khuCanHo_jButton_resetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuCanHo_jButton_resetMouseClicked
         // TODO add your handling code here:
+        khuCanHo_jTextField_maKhu.setText("");
         khuCanHo_jTextField_diaChi.setText("");
         khuCanHo_jTextField_soCan.setText("");
         khuCanHo_jTextField_soTang.setText("");
@@ -270,16 +277,18 @@ public class KhuCanHo extends javax.swing.JFrame {
 
     private void khuCanHo_jButton_suaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuCanHo_jButton_suaMouseClicked
         // TODO add your handling code here:
-        String maKhu = (String) khuCanHo_jComboBox_maKhu.getSelectedItem();
+        String maKhu = khuCanHo_jTextField_maKhu.getText();
         String tenKhu = khuCanHo_jTextField_tenKhu.getText();
         String diaChi = khuCanHo_jTextField_diaChi.getText();
         String soTang = khuCanHo_jTextField_soTang.getText();
-        String soCan = khuCanHo_jTextField_soCan.getText();
+        String soCanHo = khuCanHo_jTextField_soCan.getText();
         int hangDuocChon = table_KhuCanHo.getSelectedRow();
-        String maTemp = table_KhuCanHo.getValueAt(hangDuocChon, 1).toString();
-        String query = "UPDATE INFO SET tenKhu="+tenKhu+", soTang='"
-                +soTang+"', soCan='"+soCan+"',diaChi="+diaChi+" where maKhu="+maTemp;
+        String maTemp = table_KhuCanHo.getValueAt(hangDuocChon, 0).toString();
+        String query = "UPDATE KHUCANHO SET tenKhu='"+tenKhu+"', soTang="
+                +soTang+", soCanHo="+soCanHo+",diaChi='"+diaChi+"' where maKhu='"+maKhu+"'";
+        ketNoi.Mo();
         ketNoi.CapNhat(query);
+        System.out.println(query);
         
         //show
         this.getDulieu();
@@ -287,14 +296,15 @@ public class KhuCanHo extends javax.swing.JFrame {
 
     private void khuCanHo_jButton_xoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuCanHo_jButton_xoaMouseClicked
         // TODO add your handling code here:
-        String maKhu = (String) khuCanHo_jComboBox_maKhu.getSelectedItem();
+        String maKhu = khuCanHo_jTextField_maKhu.getText();
         String tenKhu = khuCanHo_jTextField_tenKhu.getText();
         String diaChi = khuCanHo_jTextField_diaChi.getText();
         String soTang = khuCanHo_jTextField_soTang.getText();
-        String soCan = khuCanHo_jTextField_soCan.getText();
+        String soCanHo = khuCanHo_jTextField_soCan.getText();
         int hangDuocChon = table_KhuCanHo.getSelectedRow();
-        String maTemp = table_KhuCanHo.getValueAt(hangDuocChon, 1).toString();
-        String query = "DELETE from KHUCANHO where maKhu="+maTemp;
+        String maTemp = table_KhuCanHo.getValueAt(hangDuocChon, 0).toString();
+        String query = "DELETE from KHUCANHO where maKhu='"+maKhu+"'";
+        ketNoi.Mo();
         ketNoi.CapNhat(query);
         //Show
         this.getDulieu();
@@ -305,14 +315,19 @@ public class KhuCanHo extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         int rowSelected = table_KhuCanHo.getSelectedRow();
-        khuCanHo_jTextField_tenKhu.setText(table_KhuCanHo.getValueAt(rowSelected, 2).toString());
-        khuCanHo_jTextField_diaChi.setText(table_KhuCanHo.getValueAt(rowSelected, 5).toString());
-        khuCanHo_jTextField_soCan.setText(table_KhuCanHo.getValueAt(rowSelected, 4).toString());
-        khuCanHo_jTextField_soTang.setText(table_KhuCanHo.getValueAt(rowSelected, 3).toString());
+        khuCanHo_jTextField_maKhu.setText(table_KhuCanHo.getValueAt(rowSelected, 0).toString());
+        khuCanHo_jTextField_tenKhu.setText(table_KhuCanHo.getValueAt(rowSelected, 1).toString());
+        khuCanHo_jTextField_soTang.setText(table_KhuCanHo.getValueAt(rowSelected, 2).toString());
+        khuCanHo_jTextField_soCan.setText(table_KhuCanHo.getValueAt(rowSelected, 3).toString());
+        khuCanHo_jTextField_diaChi.setText(table_KhuCanHo.getValueAt(rowSelected, 4).toString());
         
         
         
     }//GEN-LAST:event_table_KhuCanHoMouseClicked
+
+    private void khuCanHo_jButton_themMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuCanHo_jButton_themMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_khuCanHo_jButton_themMouseClicked
 
     /**
      * @param args the command line arguments
@@ -386,7 +401,6 @@ public class KhuCanHo extends javax.swing.JFrame {
             Logger.getLogger(ThongTinDanCu.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("add du lieu vao bang that bai!");
         }
-        ketNoi.DongKetNoi();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
@@ -404,8 +418,8 @@ public class KhuCanHo extends javax.swing.JFrame {
     private javax.swing.JButton khuCanHo_jButton_them;
     private javax.swing.JButton khuCanHo_jButton_tim;
     private javax.swing.JButton khuCanHo_jButton_xoa;
-    private javax.swing.JComboBox<String> khuCanHo_jComboBox_maKhu;
     private javax.swing.JTextField khuCanHo_jTextField_diaChi;
+    private javax.swing.JTextField khuCanHo_jTextField_maKhu;
     private javax.swing.JTextField khuCanHo_jTextField_soCan;
     private javax.swing.JTextField khuCanHo_jTextField_soTang;
     private javax.swing.JTextField khuCanHo_jTextField_tenKhu;
