@@ -5,23 +5,46 @@
  */
 package main;
 
-import javafx.scene.paint.Color;
 import javax.swing.JPanel;
 
 /**
  *
  * @author proxc
  */
-public class Home extends javax.swing.JFrame {
+public final class Home extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
+ 
     public Home() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
+    public Home(String loginName, int role) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setLoginName(loginName);
+        this.setRole(role);
+        this.Xinchao.setText("Chào "+getLoginName());
+    }
+    private String loginName;
+    private int role;
+    public void setRole(int role)
+    {
+        this.role = role;
+    }
+    public int getRole()
+    {
+        return this.role;
+    }
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
+    public String getLoginName()
+    {
+        return this.loginName;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,10 +59,9 @@ public class Home extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         exit = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Xinchao = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         giaoDich = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -85,7 +107,7 @@ public class Home extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("JavaProject");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
 
         exit.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         exit.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,20 +122,18 @@ public class Home extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Quản lý chung cư");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(45, 118, 232));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 334, 25));
+        Xinchao.setEditable(false);
+        Xinchao.setBackground(new java.awt.Color(45, 118, 232));
+        Xinchao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Xinchao.setForeground(new java.awt.Color(255, 255, 255));
+        Xinchao.setBorder(null);
+        jPanel2.add(Xinchao, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 350, 25));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 348, -1));
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/navigation.png"))); // NOI18N
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 90, 100));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/search_20px_1.png"))); // NOI18N
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/building_200px.png"))); // NOI18N
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 190, 170));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 240));
 
@@ -132,9 +152,10 @@ public class Home extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(45, 118, 232));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Giao dịch");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/download_52px.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/ticket_purchase_48px.png"))); // NOI18N
 
         javax.swing.GroupLayout giaoDichLayout = new javax.swing.GroupLayout(giaoDich);
         giaoDich.setLayout(giaoDichLayout);
@@ -142,19 +163,21 @@ public class Home extends javax.swing.JFrame {
             giaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(giaoDichLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(giaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addContainerGap(49, Short.MAX_VALUE))
+            .addGroup(giaoDichLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         giaoDichLayout.setVerticalGroup(
             giaoDichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(giaoDichLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel1.add(giaoDich, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 140, 120));
@@ -177,7 +200,8 @@ public class Home extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Khu căn hộ");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/home_48px.png"))); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(45, 18, 232));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/company_50px.png"))); // NOI18N
 
         javax.swing.GroupLayout khuCanHoLayout = new javax.swing.GroupLayout(khuCanHo);
         khuCanHo.setLayout(khuCanHoLayout);
@@ -197,9 +221,9 @@ public class Home extends javax.swing.JFrame {
             .addGroup(khuCanHoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel1.add(khuCanHo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 140, 120));
@@ -222,16 +246,17 @@ public class Home extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Căn hộ");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/group_52px.png"))); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(45, 18, 232));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/home_48px.png"))); // NOI18N
 
         javax.swing.GroupLayout canHoLayout = new javax.swing.GroupLayout(canHo);
         canHo.setLayout(canHoLayout);
         canHoLayout.setHorizontalGroup(
             canHoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(canHoLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabel6)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
             .addGroup(canHoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -239,12 +264,12 @@ public class Home extends javax.swing.JFrame {
         );
         canHoLayout.setVerticalGroup(
             canHoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(canHoLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, canHoLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         jPanel1.add(canHo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 140, 120));
@@ -264,32 +289,32 @@ public class Home extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(45, 118, 232));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Khách hàng");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/classroom_48px.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/user_group_48px.png"))); // NOI18N
 
         javax.swing.GroupLayout khachHangLayout = new javax.swing.GroupLayout(khachHang);
         khachHang.setLayout(khachHangLayout);
         khachHangLayout.setHorizontalGroup(
             khachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(khachHangLayout.createSequentialGroup()
-                .addGroup(khachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(khachHangLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel8))
-                    .addGroup(khachHangLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel7)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jLabel8)
+                .addContainerGap(46, Short.MAX_VALUE))
+            .addGroup(khachHangLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         khachHangLayout.setVerticalGroup(
             khachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(khachHangLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel1.add(khachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 140, 120));
@@ -309,32 +334,32 @@ public class Home extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(45, 118, 232));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Doanh thu");
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/settings_48px.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/statistics_48px.png"))); // NOI18N
 
         javax.swing.GroupLayout doanhThuLayout = new javax.swing.GroupLayout(doanhThu);
         doanhThu.setLayout(doanhThuLayout);
         doanhThuLayout.setHorizontalGroup(
             doanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(doanhThuLayout.createSequentialGroup()
-                .addGroup(doanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(doanhThuLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel10))
-                    .addGroup(doanhThuLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel9)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, doanhThuLayout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(44, 44, 44))
         );
         doanhThuLayout.setVerticalGroup(
             doanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(doanhThuLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel1.add(doanhThu, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 140, 120));
@@ -354,27 +379,30 @@ public class Home extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(45, 118, 232));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Tài khoản");
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/list_64px.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/collaboration_female_male_48px.png"))); // NOI18N
 
         javax.swing.GroupLayout taiKhoanLayout = new javax.swing.GroupLayout(taiKhoan);
         taiKhoan.setLayout(taiKhoanLayout);
         taiKhoanLayout.setHorizontalGroup(
             taiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(taiKhoanLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(taiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taiKhoanLayout.createSequentialGroup()
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addGap(45, 45, 45))
         );
         taiKhoanLayout.setVerticalGroup(
             taiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taiKhoanLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addGap(16, 16, 16))
         );
@@ -480,34 +508,45 @@ public class Home extends javax.swing.JFrame {
 //
     private void khuCanHoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuCanHoMousePressed
         // TODO add your handling code here:
-        new KhuCanHo().show();
+//        new KhuCanHo().show();
+        KhuCanHo khucanho = new KhuCanHo(getLoginName(), getRole());
+        khucanho.show();
     }//GEN-LAST:event_khuCanHoMousePressed
 
     private void canHoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canHoMousePressed
         // TODO add your handling code here:
         //just a sample.
-        new CanHo().show();
+//        new CanHo().show();
+        CanHo canho = new CanHo(getLoginName(), getRole());
+        canho.show();
     }//GEN-LAST:event_canHoMousePressed
 
     private void giaoDichMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giaoDichMousePressed
         // TODO add your handling code here:
-        new ThongTinMuaBan().show();
+//      new ThongTinMuaBan().show();
+        ThongTinMuaBan thongtinmuaban = new ThongTinMuaBan(getLoginName(), getRole());
+        thongtinmuaban.show();
         
     }//GEN-LAST:event_giaoDichMousePressed
 
     private void khachHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khachHangMousePressed
         // TODO add your handling code here:
-        new ThongTinDanCu().show();
+//        new ThongTinDanCu().show();
+        ThongTinDanCu thongtindancu = new ThongTinDanCu(getLoginName(), getRole());
+        thongtindancu.show();
     }//GEN-LAST:event_khachHangMousePressed
 
     private void doanhThuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doanhThuMousePressed
         // TODO add your handling code here:
-        new ThongKeDoanhThu().show();
+//        new ThongKeDoanhThu().show();
+        ThongKeDoanhThu thongkedoanhthu = new ThongKeDoanhThu(getLoginName(), getRole());
+        thongkedoanhthu.show();
     }//GEN-LAST:event_doanhThuMousePressed
 
     private void taiKhoanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanMousePressed
         // TODO add your handling code here:
-        new TaiKhoan().show();
+        TaiKhoan taikhoan = new TaiKhoan(getLoginName(),getRole());
+        taikhoan.show();
     }//GEN-LAST:event_taiKhoanMousePressed
  public void setColor(JPanel panel)
  {
@@ -556,6 +595,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Xinchao;
     private javax.swing.JPanel canHo;
     private javax.swing.JPanel doanhThu;
     private javax.swing.JLabel exit;
@@ -567,7 +607,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -579,7 +618,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel khachHang;
     private javax.swing.JPanel khuCanHo;
     private javax.swing.JPanel taiKhoan;

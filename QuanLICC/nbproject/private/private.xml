@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Project/QuanLICC/src/main/ThongTinDanCu.java</file>
-            <file>file:/D:/Project/QuanLICC/src/main/TaiKhoan.java</file>
-            <file>file:/D:/Project/QuanLICC/src/main/Login.java</file>
-            <file>file:/D:/Project/QuanLICC/src/main/Home.java</file>
-            <file>file:/D:/Project/QuanLICC/src/main/ThongTinMuaBan.java</file>
+            <file>file:/D:/Project/QuanLyChungCu/QuanLICC/src/main/Login.java</file>
+            <file>file:/D:/Project/QuanLyChungCu/QuanLICC/src/main/CanHo.java</file>
+            <file>file:/D:/Project/QuanLyChungCu/QuanLICC/src/main/Home.java</file>
+            <file>file:/D:/Project/QuanLyChungCu/QuanLICC/src/main/ThongKeDoanhThu.java</file>
+            <file>file:/D:/Project/QuanLyChungCu/QuanLICC/src/main/ThongTinDanCu.java</file>
+            <file>file:/D:/Project/QuanLyChungCu/QuanLICC/src/main/KhuCanHo.java</file>
+            <file>file:/D:/Project/QuanLyChungCu/QuanLICC/src/main/ThongTinMuaBan.java</file>
+            <file>file:/D:/Project/QuanLyChungCu/QuanLICC/src/main/TaiKhoan.java</file>
         </group>
     </open-files>
 </project-private>
